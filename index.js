@@ -30,10 +30,19 @@ const projectsCollection = client.db("portfolioDB").collection("projects")
 async function run() {
     try {
         // Connect the client to the server	(optional starting in v4.7)
-        await client.connect();
+        await client.connect()
 
 
 
+        app.get("/skills", async (req, res) => {
+            const data = await skillsCollection.find().toArray()
+            res.send(data)
+        })
+
+        app.get("/projects", async (req, res) => {
+            const result = await projectsCollection.find().toArray()
+            res.send(result)
+        })
 
 
 
